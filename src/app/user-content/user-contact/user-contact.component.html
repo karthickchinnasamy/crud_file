@@ -1,0 +1,111 @@
+<div class="container-fluid ">
+  <mat-card class="card" *ngIf="userForm">
+    <mat-card-header>
+      <mat-card-title>{{title}} User Contact</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="userForm" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" class='full-width'>
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="First Name" formControlName="firstName" appAutofocus>
+              <mat-error *ngIf="userForm.get('firstName')!.getError('required')">First Name is required</mat-error>
+              <mat-error *ngIf="userForm.get('firstName')!.getError('maxlength')">Should be enter maximum length 100</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" class='full-width'>
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Last Name" formControlName="lastName" appAutofocus>
+              <mat-error *ngIf="userForm.get('lastName')!.getError('required')">Last Name is required</mat-error>
+              <mat-error *ngIf="userForm.get('lastName')!.getError('maxlength')">Should be enter maximum length 100</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" class='full-width'>
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email" (keypress)="clearEmailText()" (change)="getUserByEmail($event)">
+
+              <mat-error *ngIf="userForm.get('email')!.getError('required')">Email is required</mat-error>
+              <mat-error *ngIf="userForm.get('email')!.getError('email')">Enter a valid email</mat-error>
+              <mat-error *ngIf="userForm.get('email')!.getError('maxlength')">Should be enter maximum length 100</mat-error>
+
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input matInput placeholder="Phone Number" formControlName="phoneNumber" (keypress)="allowedNumberOnly($event);clearText()"
+               (change)="getUserByPhoneNumber($event)">
+              <mat-error *ngIf="userForm.get('phoneNumber')!.getError('required')">Phone Number is required</mat-error>
+              <mat-error *ngIf="userForm.get('phoneNumber')!.getError('maxlength')">Should be enter maximum length 10</mat-error>
+              <mat-error *ngIf="userForm.get('phoneNumber')!.getError('minlength')">Should be enter maximum length 10</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input matInput placeholder="Address" formControlName="address" #mapSearchField>
+              <mat-error *ngIf="userForm.get('address')!.getError('required')">Address is required</mat-error>
+              <mat-error *ngIf="userForm.get('address')!.getError('maxlength')">Should be enter maximum length 200</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>City</mat-label>
+              <input matInput placeholder="City" formControlName="city">
+              <mat-error *ngIf="userForm.get('city')!.getError('required')">Address is required</mat-error>
+              <mat-error *ngIf="userForm.get('city')!.getError('maxlength')">Should be enter maximum length 100</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>State</mat-label>
+              <input matInput placeholder="State" formControlName="state">
+              <mat-error *ngIf="userForm.get('state')!.getError('required')">State is required</mat-error>
+              <mat-error *ngIf="userForm.get('state')!.getError('maxlength')">Should be enter maximum length 100</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Country</mat-label>
+              <input matInput placeholder="Country" formControlName="country">
+              <mat-error *ngIf="userForm.get('country')!.getError('required')">State is required</mat-error>
+              <mat-error *ngIf="userForm.get('country')!.getError('maxlength')">Should be enter maximum length 100</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>PostalCode</mat-label>
+              <input matInput placeholder="PostalCode" (keypress)="allowedNumberOnly($event)" formControlName="postalCode">
+              <mat-error *ngIf="userForm.get('postalCode')!.getError('required')">PostalCode is required</mat-error>
+              <mat-error *ngIf="userForm.get('postalCode')!.getError('maxlength')">Should be enter maximum length 8</mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="pull-right">
+          <ul class="list-inline">
+            <li  class="list-inline-item">
+              <mat-error class="errMsgCls" *ngIf="errMsgEmail !== ''">{{errMsgEmail}}</mat-error>
+              <mat-error class="errMsgCls" *ngIf="errMsgPhone !== ''">{{errMsgPhone}}</mat-error>
+            </li>
+            <li class="list-inline-item" >
+              <button class="pull-right" type="submit" mat-raised-button color="primary"
+              [disabled]="!userForm.valid || errMsgEmail !=='' || errMsgPhone !== ''">Submit</button>
+            </li>
+            <li class="list-inline-item" >
+              <button class="pull-right" (click)="cancel()" mat-raised-button color="danger">Cancel</button>
+            </li>
+        </ul>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

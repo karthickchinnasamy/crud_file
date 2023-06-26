@@ -1,0 +1,137 @@
+
+  <div class="card">
+    <div class="card-header">
+     <span class="tableHead">Users</span>  <button class="pull-right btn btn-info btnCls"
+     #tooltip="matTooltip"
+  matTooltip="Add new user"
+  matTooltipPosition="below" (click)="addNewUser()">
+        <mat-icon class="addIcon">
+          person_add
+          </mat-icon>
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="data" matSort>
+          <!-- First Column ID-->
+          <!-- <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">ID:</span>
+              {{element.id}}
+            </mat-cell>
+          </ng-container> -->
+
+          <!-- Second Column -->
+          <ng-container matColumnDef="FirstName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">FirstName:</span>
+              {{element.FirstName}}
+             </mat-cell>
+          </ng-container>
+
+          <!-- Third Column -->
+          <ng-container matColumnDef="LastName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> LastName </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">LastName:</span>
+              {{element.LastName}}
+            </mat-cell>
+          </ng-container>
+          <!-- Fourth Column -->
+          <ng-container matColumnDef="Email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Email:</span>
+               {{element.Email }}
+              </mat-cell>
+          </ng-container>
+           <!-- Fifth Column -->
+           <ng-container matColumnDef="PhoneNumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> PhoneNumber </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">PhoneNumber:</span>
+               {{element.PhoneNumber }}
+               </mat-cell>
+          </ng-container>
+           <!-- Sixth Column -->
+           <ng-container matColumnDef="Address">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Address:</span>
+               {{element.Address }}
+               </mat-cell>
+          </ng-container>
+          <!-- Seventh Column -->
+          <ng-container matColumnDef="City">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">City:</span>
+               {{element.City }}
+              </mat-cell>
+          </ng-container>
+           <!-- Eighth Column -->
+           <ng-container matColumnDef="State">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> State </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">State:</span>
+              {{element.State }}
+            </mat-cell>
+          </ng-container>
+           <!-- Ninth Column -->
+           <ng-container matColumnDef="Country">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">County:</span>
+               {{element.Country }}
+              </mat-cell>
+          </ng-container>
+           <!-- Tenth Column -->
+           <ng-container matColumnDef="PostalCode">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> PostalCode </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">PostalCode:</span>
+               {{element.PostalCode }}
+               </mat-cell>
+          </ng-container>
+          <!-- Action Column -->
+          <ng-container matColumnDef="map">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Map </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Edit:</span>
+              <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                color="primary" (click)="viewMap(element)">
+                <mat-icon>person_pin_circle</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Edit:</span>
+              <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                color="primary" (click)="edit(element)">
+                <mat-icon>edit</mat-icon>
+              </button> </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="mobile-label">Delete:</span>
+              <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
+                (click)="delete(element)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </button> </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <div style="text-align: center;color: brown;" *ngIf="data.data.length === 0">No records found!</div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>
+
+
