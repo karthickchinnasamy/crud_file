@@ -19,6 +19,9 @@ export class ContactMapComponent {
     private dialogRef: MatDialogRef<ContactMapComponent>) {
       console.log('data: ', data);
     }
+    /**
+     * On page load get user location and map pins
+     */
   ngOnInit(): void {
     let latVal: any = localStorage.getItem('userLocation');
     if(latVal){

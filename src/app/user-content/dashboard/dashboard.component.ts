@@ -80,6 +80,10 @@ export class DashboardComponent {
     console.log('Edit value: ', data);
     this.router.navigateByUrl(RoutingConstants.UserEditURL("edit", data.Email));
   }
+  /**
+   * View user location in google map
+   * @param data
+   */
   public viewMap(data: Contact) {
     console.log('view map: ', data);
     const confDialogRef = this.dialog.open(ContactMapComponent, {//! Remove confirmation dialog

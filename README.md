@@ -5,12 +5,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. Install npm `npm install` in project folder
 2. Install google map npm `npm install @angular/google-maps` 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-## Default Page 
-Loading default page in login screen
-Enter user name `admin` and password is  `123456'
+## Notes 
+1. Loading default page in Login screen
+2. Enter user name `admin` and password is  `123456`
+3. Dashboard showing empty user details
+4. Click to add icon redirect to new user screen and enter new user details
 
 ## Code scaffolding
 
