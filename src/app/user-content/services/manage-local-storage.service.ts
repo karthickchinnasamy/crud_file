@@ -6,18 +6,6 @@ import { Contact } from '../models/contact';
   providedIn: 'root'
 })
 export class ManageLocalStorageService {
-  // private tableData: Contact[] = [
-  //   { FirstName: 'John Doe', LastName: 'Bravo', Email: 'john@example.com',PhoneNumber:'9898978710',Address:'Citny Canada',City:'Citny',State:'Citny',Country:'Canada',PostalCode:'641012' },
-  //   { FirstName: 'Jane Smith', LastName: 'Leo', Email: 'jane@example.com',PhoneNumber:'9898978711',Address:'California USA',City:'California',State:'California',Country:'USA',PostalCode:'641089' },
-  //   { FirstName: 'Bob Johnson', LastName:'Slima', Email: 'bob@example.com',PhoneNumber:'9898978712',Address:'Mumbai INDIA',City:'Mumbai',State:'Maharastra',Country:'INDIA',PostalCode:'641789' },
-  //   { FirstName: 'Bob Slim ', LastName:'Waker', Email: 'waker@example.com', PhoneNumber:'9898978713',Address:'Erode INDIA',City:'Erode',State:'Tamilnadu',Country:'INDIA',PostalCode:'641654' },
-  //   { FirstName: 'Johnson', LastName: 'Laberd', Email: 'laberd@example.com',PhoneNumber:'9898978714',Address:'Coimbatore INDIA',City:'Coimbatore',State:'Tamilnadu',Country:'INDIA',PostalCode:'641542' },
-  //   { FirstName: 'Ridchardson', LastName: 'Son', Email: 'son@example.com',PhoneNumber:'9898978715',Address:'Chennai India',City:'Chennai',State:'Tamilnadu',Country:'INDIA',PostalCode:'641000' },
-  //   { FirstName: 'Bold', LastName:'Kavin', Email: 'kavin@example.com',PhoneNumber:'9898978716',Address:'Madurai INDIA',City:'Madurai',State:'Tamilnadu',Country:'INDIA',PostalCode:'641098' },
-  //   { FirstName: 'Lee', LastName:'Raj', Email: 'lee@example.com',PhoneNumber:'9898978717',Address:'Goa India',City:'Goa',State:'Goa',Country:'INDIA',PostalCode:'641010' },
-  //   { FirstName: 'Shyam', LastName: 'Mask', Email: 'mask@example.com',PhoneNumber:'9898978718',Address:'Cochin Kerala India',City:'Cochin',State:'Kerala',Country:'INDIA',PostalCode:'641112' },
-  //   // Add more data here...
-  // ];
   private tableData: Contact[] = [];
   constructor() { }
   /**
@@ -72,7 +60,9 @@ export class ManageLocalStorageService {
         getUserDetails[i].City = userData.City,
         getUserDetails[i].State = userData.State,
         getUserDetails[i].Country = userData.Country,
-        getUserDetails[i].PostalCode = userData.PostalCode
+        getUserDetails[i].PostalCode = userData.PostalCode,
+        getUserDetails[i].Lat = userData.Lat,
+        getUserDetails[i].Lng = userData.Lng
         // Set user details
       localStorage.setItem('userList', JSON.stringify(getUserDetails));
       }
