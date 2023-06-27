@@ -19,8 +19,8 @@ export class UserContactComponent {
   private userId!: any;
   public appMode!: string;
   public title!: string;
-  public errMsgEmail!: any;
-  public errMsgPhone!: any;
+  public errMsgEmail: string = '';
+  public errMsgPhone: string = '';
   private getValue!: Contact;
   private userLocation: any;
   constructor(
@@ -110,6 +110,7 @@ export class UserContactComponent {
   private setUserValue() {
     this.spinnerService.show();
     let getUser: Contact = this.manageLocalService.getUserByEmail(this.userId);
+    // this.userLocation = this.manageLocalService.get
     console.log('get user by email: ', getUser);
     if (getUser) {
       //!User exist allowed to set value
@@ -135,6 +136,8 @@ export class UserContactComponent {
    * Add/Edit user details
    */
   public submit() {
+    console.log('this.errMsgEmail: ', this.errMsgEmail);
+    console.log('this.errMsgPhone: ', this.errMsgPhone);
     let phoneNumberToString = this.userForm.value.phoneNumber.toString();
     if(this.errMsgEmail !== '' || this.errMsgPhone !== ''){
       return
@@ -175,6 +178,7 @@ export class UserContactComponent {
         Country: this.userForm.value.country,
         PostalCode: this.userForm.value.postalCode,
       };
+      console.log('userLocation:', this.userLocation);
       let userLocValue: UserLocation = {
         userEmail:  this.userForm.value.email,
         lat: this.userLocation.lat,
