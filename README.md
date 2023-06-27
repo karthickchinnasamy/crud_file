@@ -1,4 +1,4 @@
-# CrudFile
+# CRUD in local storage and add map pins in user address
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
 ## Download and setup
@@ -11,9 +11,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 ## Notes 
 1. Loading default page in Login screen
-2. Enter user name `admin` and password is  `123456`
+2. Enter user name `admin` and password is  `123456` hardcode value
 3. Dashboard showing empty user details
-4. Click to add icon redirect to new user screen and enter new user details
+4. Click to add icon redirect to new user screen and enter new user details.
+5. Using reactive forms and validation in user details screen.
 
 ## Code scaffolding
 
