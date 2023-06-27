@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ManageLocalStorageService } from '../services/manage-local-storage.service';
+import { Contact } from '../models/contact';
 
 @Component({
   selector: 'app-contact-map',
@@ -15,6 +17,7 @@ export class ContactMapComponent {
   map!: google.maps.Map;
   markers: any = [];
   constructor(
+    private manageLocalService: ManageLocalStorageService,
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<ContactMapComponent>) {
       console.log('data: ', data);
@@ -23,22 +26,15 @@ export class ContactMapComponent {
      * On page load get user location and map pins
      */
   ngOnInit(): void {
-    let latVal: any = localStorage.getItem('userLocation');
-    if(latVal){
-      latVal = JSON.parse(latVal);
-      console.log('lat lng value', latVal);
-      for(let i = 0; i <latVal.length; i++) {//! User location list using for loop
-        if(latVal[i].userEmail === this.data) {//! Get user
-          let val = {
-            position: { lat: latVal[i].lat, lng: latVal[i].lng },
-          };
-          this.center = {
-            lat: latVal[i].lat,
-            lng: latVal[i].lng,
-          };
-          this.markers.push(val);
-        }
-      }
-    }
+     let getUser: Contact = this.manageLocalService.getUserByEmail(this.data);
+     console.log('getUser: ', getUser);
+     this.center = {
+      lat: getUser.Lat,
+      lng: getUser.Lng,
+    };
+    let val = {
+      position: { lat: getUser.Lat, lng: getUser.Lng },
+    };
+    this.markers.push(val);
   }
 }

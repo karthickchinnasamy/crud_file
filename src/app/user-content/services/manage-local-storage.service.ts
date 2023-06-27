@@ -46,25 +46,6 @@ export class ManageLocalStorageService {
     }
   }
   /**
-   * Add user locations
-   * @param userData
-   * @returns
-   */
-  public addUserLocation(userData: UserLocation){
-    let getUserLocations: any = localStorage.getItem('userLocation');
-    if(getUserLocations){
-      getUserLocations = JSON.parse(getUserLocations);
-      getUserLocations.push(userData);
-      localStorage.setItem('userLocation',JSON.stringify(getUserLocations));
-      return getUserLocations;
-    } else {
-      let newArray: any = [];
-      newArray.push(userData);
-      localStorage.setItem('userLocation',JSON.stringify(newArray));
-      return newArray;
-    }
-  }
-  /**
    * Get all users
    * @returns all users
    */
@@ -99,25 +80,6 @@ export class ManageLocalStorageService {
 
   }
   /**
-   * Update user location by user email
-   * @param userData
-   * @param updateEmail
-   */
-  public updateUserLocationByEmail(userData: any, updateEmail: string) {
-    let getUserDetails: any = localStorage.getItem('userLocation');
-    getUserDetails = JSON.parse(getUserDetails);
-    for(let i = 0; i <getUserDetails.length; i++) {//! user location list using for loop
-      if(getUserDetails[i].updateEmail === updateEmail) {//! Get user
-        getUserDetails[i].updateEmail = userData.userEmail,
-        getUserDetails[i].lat = userData.lat,
-        getUserDetails[i].lng = userData.lng,
-        // Set user details
-      localStorage.setItem('userLocation', JSON.stringify(getUserDetails));
-      }
-   }
-
-  }
-  /**
    * Remover user by email
    */
   public removeUserByEmail(userEmail: string) {
@@ -131,17 +93,6 @@ export class ManageLocalStorageService {
       // Set user details
       localStorage.setItem('userList', JSON.stringify(getUserDetails));
   }
-  public removeUserLocationByEmail(userEmail: string) {
-    let getUserDetails: any = localStorage.getItem('userLocation');
-    getUserDetails = JSON.parse(getUserDetails);
-    for(let i = 0; i <getUserDetails.length; i++) {
-      if(getUserDetails[i].userEmail == userEmail) {
-        getUserDetails.splice(i, 1);//! Remove user location
-      }
-   }
-      // Set user details
-      localStorage.setItem('userLocation', JSON.stringify(getUserDetails));
-  }
   /**
    * Get user by email
    * @param userEmail  email id
@@ -152,21 +103,6 @@ export class ManageLocalStorageService {
     if(getUserDetails){
       getUserDetails = JSON.parse(getUserDetails);
       let getUser: any = getUserDetails.find((x:Contact) => x.Email === userEmail);
-      console.log('Get user: ', getUser);
-      return getUser;
-    }
-  }
-  /**
-   * Get user by user name
-   * Check user is already exist
-   * @param firstName
-   * @returns user Contact values
-   */
-  public getUserByFirstName(firstName: string) {
-    let getUserDetails: any = localStorage.getItem('userList');
-    if(getUserDetails){
-      getUserDetails = JSON.parse(getUserDetails);
-      let getUser: any = getUserDetails.find((x:Contact) => x.FirstName === firstName);
       console.log('Get user: ', getUser);
       return getUser;
     }
@@ -191,6 +127,5 @@ export class ManageLocalStorageService {
    */
   public removeAllLocalStorage(){
     localStorage.removeItem('userList');
-    localStorage.removeItem('userLocation');
   }
 }

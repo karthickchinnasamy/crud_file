@@ -67,7 +67,6 @@ export class DashboardComponent {
     confDialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed === true) {
         this.manageLocalService.removeUserByEmail(data.Email);
-        this.manageLocalService.removeUserLocationByEmail(data.Email);
         this.getUsers();
       }
     });

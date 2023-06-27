@@ -8,4 +8,6 @@ export class Contact {
   State!: string;
   Country!: string;
   PostalCode!: string;
+  Lat!: string;
+  Lng!: string;
 }

@@ -109,6 +109,7 @@ export class UserContactComponent {
    */
   private setUserValue() {
     this.spinnerService.show();
+    let center: any;
     let getUser: Contact = this.manageLocalService.getUserByEmail(this.userId);
     // this.userLocation = this.manageLocalService.get
     console.log('get user by email: ', getUser);
@@ -125,6 +126,11 @@ export class UserContactComponent {
       this.userForm.controls['state'].setValue(getUser.State);
       this.userForm.controls['country'].setValue(getUser.Country);
       this.userForm.controls['postalCode'].setValue(getUser.PostalCode);
+      center = {
+        lat: getUser.Lat,
+        lng: getUser.Lng,
+      };
+      this.userLocation = center;
       this.spinnerService.hide();
     } else {
       //! Invalid User
@@ -155,14 +161,10 @@ export class UserContactComponent {
         State: this.userForm.value.state,
         Country: this.userForm.value.country,
         PostalCode: this.userForm.value.postalCode,
+        Lat: this.userLocation.lat,
+        Lng: this.userLocation.lng
       };
-      let userLocValue: UserLocation = {
-        userEmail:  this.userForm.value.email,
-        lat: this.userLocation.lat,
-        lng: this.userLocation.lng,
-      }
       this.manageLocalService.addUser(user);
-      this.manageLocalService.addUserLocation(userLocValue);
       this.router.navigateByUrl(RoutingConstants.Dashboard);
     } else {
       //!Only allowed to edit
@@ -177,17 +179,10 @@ export class UserContactComponent {
         State: this.userForm.value.state,
         Country: this.userForm.value.country,
         PostalCode: this.userForm.value.postalCode,
+        Lat: this.userLocation.lat,
+        Lng: this.userLocation.lng
       };
-      console.log('userLocation:', this.userLocation);
-      let userLocValue: UserLocation = {
-        userEmail:  this.userForm.value.email,
-        lat: this.userLocation.lat,
-        lng: this.userLocation.lng,
-      }
       this.manageLocalService.updateUserByEmail(user, this.userId);
-      if(this.userLocation){
-        this.manageLocalService.updateUserLocationByEmail(userLocValue, this.userId);
-      }
       this.router.navigateByUrl(RoutingConstants.Dashboard);
     }
   }
